@@ -27,10 +27,10 @@ public class CheckoutController {
 	public String showCheckoutPage1(ModelMap model, @RequestParam String emailid, @RequestParam String table) {
 		System.out.println(emailid);
 		     String tablebill= jdbc.findBill(Integer.parseInt(table));
-		     System.out.println(emailid);
-		     
+		     System.out.println(emailid);    
 		     sendemail.sendEmail(emailid,tablebill);
 		     jdbc.deleteRow(Integer.parseInt(table));
+		     jdbc.changeStatus1(Integer.parseInt(table));
 		     return "waiter1";
 		
 	}

@@ -36,7 +36,9 @@
             cursor: pointer;
              }
 </style>
+
 </head>
+
 <body>
 
 <form:form action="takeorder"  modelAttribute="custorder" method="POST" >
@@ -72,7 +74,7 @@
 
 <td>Dishname</td>
 <br>
-<td><form:input path="Dishname" placeholder="Dishname"  list="dishes"  autocomplete="on" /></td>
+<td><form:input path="Dishname" placeholder="Dishname"  list="dishes" id="clearthis1"  autocomplete="on" /></td>
 <datalist id="dishes">
   			<option value="Paneer Tikka">
 		  	<option value="Chilli Paneer">
@@ -105,7 +107,7 @@
 
 <td>Quantity</td>
 <br>
-<td><form:input path="quantity" placeholder="Quantity" /></td>
+<td><form:input path="quantity" placeholder="Quantity" id="clearthis2"/></td>
 
 
 </tr>
@@ -125,6 +127,7 @@
 
 
 </form:form>
+
 <br>
 <br>
 <br>
@@ -143,4 +146,14 @@
     </center>
  
 </body>
+<script>
+function clickHandler()
+{	
+	
+	document.querySelector("#clearthis1").placeholder="Dishname";
+	document.querySelector("#clearthis2").placeholder="Quantity";
+	
+}
+</script>
+
 </html>

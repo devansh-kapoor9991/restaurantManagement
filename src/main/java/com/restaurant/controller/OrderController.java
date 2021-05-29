@@ -41,7 +41,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="/takeorder", method = RequestMethod.POST)
-	public String showHome(ModelMap model, @ModelAttribute("custorder") Orders O)
+	public String showOrderpage(ModelMap model, @ModelAttribute("custorder") Orders O)
 	{	
 		
 		Menu menu = jdbc.getCodeandPrice(O.getDishname());	

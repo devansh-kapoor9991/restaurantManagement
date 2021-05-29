@@ -69,26 +69,25 @@ import com.restaurant.model.Menu;
 			
 			if(username.equals("Nilesh@123")&&password.equals("Admin@1234"))
 			{
-				model.put("name", username);
-				return "reception";
+				
+				return "redirect:/recep";
 			}
 			
 			else if(username.equals("Rahul@123")&&password.equals("Admin@1234"))
-			{
-			model.put("name", username);
-			return "waiter1";
+			{	
+				return "waiter1";
+			
 			}
 			
 			else if(username.equals("Vijay@123")&&password.equals("Admin@1234"))
 			{
-				model.put("name", username);
 				return "waiter2";
 			}
 			
 			else if(username.equals("Sanjeev@123")&&password.equals("Admin@1234"))
 			{
 
-				model.put("name", username);
+			
 				
 				return "chef";
 			}		

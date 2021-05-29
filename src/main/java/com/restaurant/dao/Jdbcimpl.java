@@ -38,21 +38,20 @@ public class Jdbcimpl {
 
 	}
 	
-	/*public List<Menu> getAllMenu() {
-		List<Menu> tList = new ArrayList<>();
-		String query = "select * from menu";
-		List<Map<String, Object>> menuRows = jdbcTemplate.queryForList(query);
+	public List<Seating> getAllSeating() {
+		List<Seating> tList = new ArrayList<>();
+		String query = "select * from seating WHERE status='A'";
+		List<Map<String, Object>> seatingRows = jdbcTemplate.queryForList(query);
 
-		for (Map<String, Object> menuRow : menuRows) {
-			Menu menu = new Menu();
-			menu.setDish_code(Integer.parseInt(String.valueOf(menuRow.get("dish_code"))));
-			menu.setDish_name((String) menuRow.get("dish_name"));
-			menu.setPrice(Integer.parseInt(String.valueOf(menuRow.get("price"))));
-			menu.setCategory((String) menuRow.get("category"));
-			tList.add(menu);
+		for (Map<String, Object> seatingRow : seatingRows) {
+			Seating seating = new Seating();
+			seating.setTable_no(Integer.parseInt(String.valueOf(seatingRow.get("table_no"))));
+			seating.setCapacity(Integer.parseInt(String.valueOf(seatingRow.get("capacity"))));
+			seating.setStatus((String) seatingRow.get("status"));
+			tList.add(seating);
 		}
 		return tList;
-	}*/
+	}
 	
 	@SuppressWarnings("deprecation")
 	public String findBill(int tableno) {
@@ -62,27 +61,25 @@ public class Jdbcimpl {
         return jdbcTemplate.queryForObject(sql, new Object[]{tableno}, String.class);
     }
 	
+	public void changeStatus(int tableno)
+	{
+		String sql="UPDATE seating SET status='NA' WHERE table_no=?";
+		jdbcTemplate.update(sql,tableno);
+	}
+
+	public void changeStatus1(int tableno)
+	{
+		String sql="UPDATE seating SET status='A' WHERE table_no=?";
+		jdbcTemplate.update(sql,tableno);
+	}
+	
+	
 	public void deleteRow(Integer id){
 	      String SQL = "delete from orderdetails where table_no = ?";
 	      jdbcTemplate.update(SQL, id);
 	
 	   }
-	
-	public List<Seating> getAllSeating() {
-		List<Seating> tList = new ArrayList<>();
-		String query = "select * from seating";
-		List<Map<String, Object>> seatingRows = jdbcTemplate.queryForList(query);
 
-		for (Map<String, Object> seatingRow : seatingRows) {
-			Seating seating = new Seating();
-			seating.setTable_no(Integer.parseInt(String.valueOf(seatingRow.get("table_no"))));
-			seating.setCapacity(Integer.parseInt(String.valueOf(seatingRow.get("capacity"))));
-			seating.setStatus((String) seatingRow.get("status"));
-			seating.setE_id(Integer.parseInt(String.valueOf(seatingRow.get("e_id"))));
-			tList.add(seating);
-		}
-		return tList;
-	}
 	
 	@SuppressWarnings("deprecation")
 	public Menu getCodeandPrice(String id) {
@@ -116,7 +113,7 @@ public class Jdbcimpl {
 				    );
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println("inside catch"+e);
+		
 				e.printStackTrace();
 			}
 			return null;
@@ -136,7 +133,7 @@ public class Jdbcimpl {
 	        for (int i = 0; i < dubs.length; i++) {
 	        	
 	            dubs[i] = din.readInt();   
-	            System.out.println(dubs[i]);
+	           // System.out.println(dubs[i]);
 	    }
 	                      
 		 return dubs;
