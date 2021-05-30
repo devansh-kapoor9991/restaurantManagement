@@ -76,6 +76,8 @@ public class OrderController {
 			System.out.println(tableno);
 			od1=jdbc.getOrderdetails(tableno);
 			System.out.println(od1);
+			bill=0;
+			i=0;
 			return "waiter1";
 		}
 	}

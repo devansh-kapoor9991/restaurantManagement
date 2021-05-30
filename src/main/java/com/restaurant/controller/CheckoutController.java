@@ -31,7 +31,12 @@ public class CheckoutController {
 		     sendemail.sendEmail(emailid,tablebill);
 		     jdbc.deleteRow(Integer.parseInt(table));
 		     jdbc.changeStatus1(Integer.parseInt(table));
+		     if(Integer.parseInt(table)>=1&&Integer.parseInt(table)<=3)
 		     return "waiter1";
+		    
+		     else
+		    	 return "waiter2";
+		    	 
 		
 	}
 

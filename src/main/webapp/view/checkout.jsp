@@ -51,7 +51,7 @@
 		<br>
 		
 		<b class = "labels">Enter Table Number</b>
-		<br><input type="password" name="table" class = "input-box"/> <br>
+		<br><input type="text" name="table" class = "input-box"/> <br>
 		<br>
 		
 		<input type="submit" value="Submit" class = "btn"/><br>
