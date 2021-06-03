@@ -14,10 +14,10 @@ import com.restaurant.model.Menu;
 
 	
 	@Controller
-	@SessionAttributes("name")
+	
 	public class LoginController {
 	
-	
+		
 		
 		@RequestMapping(value="/waiter1", method = RequestMethod.GET)
 		public String showWaiter1(ModelMap model)
@@ -74,13 +74,15 @@ import com.restaurant.model.Menu;
 			}
 			
 			else if(username.equals("Rahul@123")&&password.equals("Admin@1234"))
-			{	
-				return "waiter1";
+			{
+			
+					return "waiter1";
 			
 			}
 			
 			else if(username.equals("Vijay@123")&&password.equals("Admin@1234"))
 			{
+				
 				return "waiter2";
 			}
 			
@@ -89,7 +91,14 @@ import com.restaurant.model.Menu;
 
 			
 				
-				return "chef";
+				return "redirect:/chefdisplay";
+			}
+			else if(username.equals("Rajiv@123")&&password.equals("Admin@1234"))
+			{
+
+			
+				
+				return "redirect:/chefdisplay1";
 			}		
 			else
 			{

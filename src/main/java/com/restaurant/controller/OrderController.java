@@ -2,6 +2,8 @@ package com.restaurant.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,25 +13,33 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.restaurant.dao.Jdbcimpl;
+
 import com.restaurant.model.Menu;
 import com.restaurant.model.Orderdetails;
 import com.restaurant.model.Orders;
+import com.restaurant.model.Seating;
 
 @Controller
 public class OrderController {
 	 int dc[]=new int[26];
 	 int q[]=new int[26];
-	 int i=0;
+	 int i=0,j=0;
+	 int k=0;
 	  double bill=0;
  String tableno="";
-	
+	Orders ord[]=new Orders[26];
+	public List<Orders> ords=new ArrayList<Orders>();
+	public List<Orders> chefords=new ArrayList<Orders>();
+	public List<Orders> waiterords=new ArrayList<Orders>();
 	@Autowired
 	Jdbcimpl jdbc;
 	@Autowired
-	Orders order ;
+	Orders order;
+	
 
 	
 	
@@ -48,14 +58,18 @@ public class OrderController {
 		q[i]=O.getQuantity();
 		
 		dc[i]=menu.getDish_code();
-				i++;
+				
 		tableno=O.getTableno();
+		ords.add(O);
+		k++;
+		i++;
 		System.out.println(tableno);
 		bill+=menu.getPrice()*O.getQuantity();
 		
 		System.out.println(bill);
 		System.out.println(i);
 		
+		System.out.println(ords);
 		
 		
 		return "takeorder";
@@ -80,5 +94,58 @@ public class OrderController {
 			i=0;
 			return "waiter1";
 		}
-	}
+
+		@RequestMapping(value="/chefdisplay", method = RequestMethod.GET)
+		public ModelAndView showChefpage(ModelAndView mv)
+		{
+			System.out.println("insideCHEF");
+			
+			System.out.println("sdasfas"+ords);
+			mv.setViewName("Chef");
+			mv.addObject("orderList",ords);
+
+			return mv;
+		}
+
+		@RequestMapping(value="/chefdisplay11",method = RequestMethod.POST)
+		public String showupdatedChef(@RequestParam String checkbox1, @RequestParam int checkbox2, @RequestParam String checkbox3) 
+		{
+			order.setDishname(checkbox1);
+			order.setQuantity(checkbox2);
+			order.setTableno(checkbox3);
+			chefords.add(order);
+			for(i=0;i<chefords.size();i++)
+			{
+				for(j=0;j<ords.size();j++)
+				if(ords.get(j).equals(chefords.get(i)))
+				{
+					waiterords.add(ords.get(j));
+					ords.remove(j);
+					
+					
+				}
+				System.out.println("waiterrr"+waiterords);
+				System.out.println(ords);
+				System.out.println("cheff"+chefords);
+						
+			}
+			
+			
+			return "redirect:/chefdisplay";
+
+		}
+		@RequestMapping(value="/orderstatusR", method = RequestMethod.GET)
+		public ModelAndView showOrderstatus(ModelAndView mv)
+		{
+			System.out.println("insideorderstatus1");
+			
+			mv.setViewName("orderstatus1");
+			mv.addObject("orderstatuswaiter1",waiterords);
+
+			return mv;
+		}
+
+}
+		
+	
 

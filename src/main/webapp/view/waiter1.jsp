@@ -54,13 +54,14 @@
 <body>
 	<div class = "abc">
 		<div><a href="order1"><button class = "GFG" href=>Take Order</button></a></div>
-		<div><a href="orderstatus1"><button class = "GFG">Order Status</button></a></div>
+		<div><a href="orderstatusR"><button class = "GFG">Order Status</button></a></div>
 		<div><a href="checkout"><button class = "GFG">Checkout</button></a></div>
 	
 		<div>  <a href="home"><button class = "GFG">Logout</button></a></div>
 	
 		
 	</div>
+
 	<div class = "xyz">
 		<div class = "wt-details">
 			<div>Welcome Rahul</div>

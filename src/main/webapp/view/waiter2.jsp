@@ -54,11 +54,11 @@
 <body>
 	<div class = "abc">
 		<div><a href="order2"><button class = "GFG" href=>Take Order</button></a></div>
-		<div><a href="orderstatus2"><button class = "GFG">Order Status</button></a></div>
+		<div><a href="orderstatusV"><button class = "GFG">Order Status</button></a></div>
 		<div><a href="checkout"><button class = "GFG">Checkout</button></a></div>
 	
 		<div>  <a href="home"><button class = "GFG">Logout</button></a></div>
-	
+
 		
 	</div>
 	<div class = "xyz">

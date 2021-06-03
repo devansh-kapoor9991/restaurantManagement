@@ -46,8 +46,31 @@ public class Orders {
 	public void setTableno(String tableno) {
 		this.tableno = tableno;
 	}
-
-
+    @Override public boolean equals(Object obj)
+    {
+  
+        // checking if the two objects
+        // pointing to same object
+        if (this == obj)
+            return true;
+  
+        // checking for two condition:
+        // 1) object is pointing to null
+        // 2) if the objects belong to
+        // same class or not
+        if (obj == null
+            || this.getClass() != obj.getClass())
+            return false;
+  
+        Orders ords = (Orders)obj; // type casting object to the
+                           // intended class type
+  
+        // checking if the two two
+        // objects share all the same values
+        return this.dishname.equals(ords.dishname)
+            && this.quantity == ords.quantity
+            && this.tableno.equals(ords.tableno);
+    }
 
 	@Override
 	public String toString() {
