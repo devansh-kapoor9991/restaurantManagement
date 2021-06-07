@@ -120,7 +120,16 @@ public class Jdbcimpl {
 		});
 		
 
+
+		
     }
+	@SuppressWarnings("deprecation")
+	public String checkStatus1(int tableno)
+	{
+		String sql1="SELECT status FROM seating WHERE table_no=?";
+	
+		   return jdbcTemplate.queryForObject(sql1, new Object[]{tableno}, String.class);
+	}
 	private int[] readFromDB(Blob b) throws IOException, SQLException {
 		int[] dubs = new int[26];
 		System.out.println("inside readdb");

@@ -21,7 +21,7 @@ public class SendEmail
         msg.setSubject("Bill");
         msg.setText("Thank you for dining with us.Hope you had a good experince."
         		+"\n" +"Please Visit again.Have a nice day."
-        		+"\n"+ "Your total bill is-"
+        		+"\n"+ "Your total bill is-Rs "
         		+tablbill+"(Inclusive of 18% GST)");
 
         javaMailSender.send(msg);

@@ -9,20 +9,26 @@ public class Orders {
 	String dishname;
 	int quantity;
 	String tableno;
+	int id;
+	String order_status;
+
+	
+	
 
 	public Orders() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
-	
 
-	public Orders(String dishname, int quantity, String tableno) {
+	
+	public Orders(String dishname, int quantity, String tableno, int id, String order_status) {
 		super();
 		this.dishname = dishname;
 		this.quantity = quantity;
 		this.tableno = tableno;
+		this.id = id;
+		this.order_status = order_status;
 	}
+
 
 	public String getDishname() {
 		return dishname;
@@ -39,6 +45,30 @@ public class Orders {
 	
 	public String getTableno() {
 		return tableno;
+	}
+
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public String getOrder_status() {
+		return order_status;
+	}
+
+
+
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
 	}
 
 
@@ -72,9 +102,12 @@ public class Orders {
             && this.tableno.equals(ords.tableno);
     }
 
+
+
 	@Override
 	public String toString() {
-		return "Orders [dishname=" + dishname + ", quantity=" + quantity + ", tableno=" + tableno + "]";
+		return "Orders [dishname=" + dishname + ", quantity=" + quantity + ", tableno=" + tableno + ", id=" + id
+				+ ", order_status=" + order_status + "]";
 	}
 
 

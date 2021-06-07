@@ -28,6 +28,8 @@ public class OrderController1 {
 	double bill=0;
 	String tableno="";
 	int k=0;
+	int id=1;
+	 String status="Order-Received";
 
 	@Autowired
 	Jdbcimpl jdbc;
@@ -50,11 +52,36 @@ public class OrderController1 {
 	@RequestMapping(value="/takeorder1", method = RequestMethod.POST)
 	public String showHome(ModelMap model, @ModelAttribute("custorder1") Orders O)
 	{	
+		tableno=O.getTableno();
+	System.out.println(tableno);
+	String a=jdbc.checkStatus1(Integer.parseInt(tableno));
+	System.out.println("dffasdfad"+a);
+	if(a.equals("A"))
+	{
+	System.out.println("dffasdfad"+a);
+	model.put("error","This table is still not occupied");
+	jdbc.deleteRow(Integer.parseInt(tableno));
+	return  "takeorder1";
+
+	}
 		Menu menu = jdbc.getCodeandPrice(O.getDishname());	
 		q[i]=O.getQuantity();
-		
+		O.setId(id++);
+		O.setOrder_status(status);
 		dc[i]=menu.getDish_code();
-		
+		tableno=O.getTableno();
+		for(int k=0;k<ords1.size();k++)
+		{
+			if(ords1.get(k).getDishname().equals(O.getDishname())&&ords1.get(k).getTableno().equals(O.getTableno()))
+			{
+				int z=O.getQuantity();
+				ords1.get(k).setQuantity(ords1.get(k).getQuantity()+z);
+				O=null;
+			}
+			
+		}
+		if(O!=null)
+		{
 				ords1.add(O);
 				k++;
 				i++;
@@ -70,7 +97,7 @@ public class OrderController1 {
 		bill+=menu.getPrice()*O.getQuantity();
 		System.out.println(bill);
 		
-		
+		}
 		
 		return "takeorder1";
 	}
@@ -79,14 +106,22 @@ public class OrderController1 {
 		public String showorderdetail1(Model model) throws IOException, SQLException
 		{
 			Orderdetails od=new Orderdetails();
+			if(bill>0)
+			{
 			od.setDish_code(dc);
 			od.setBill(bill);
 			od.setQuantity(q);
 			od.setTable_no(tableno);
 			int a=	jdbc.insertOrders(od);
+			
+			
 			Orderdetails od1=new Orderdetails();
+			System.out.println(tableno);
 			od1=jdbc.getOrderdetails(tableno);
 			System.out.println(od1);
+			}
+			bill=0;
+			i=0;
 			return "waiter2";
 		}
 
@@ -102,26 +137,16 @@ public class OrderController1 {
 			return mv;
 		}
 		@RequestMapping(value="/chefdisplay22",method = RequestMethod.POST)
-		public String showupdatedChef(@RequestParam String checkbox1, @RequestParam int checkbox2, @RequestParam String checkbox3) 
+		public String showupdatedChef(@RequestParam int id,@RequestParam String status) 
 		{
-			order.setDishname(checkbox1);
-			order.setQuantity(checkbox2);
-			order.setTableno(checkbox3);
-			chefords1.add(order);
-			for(i=0;i<chefords1.size();i++)
+			
+
+			for(j=0;j<ords1.size();j++)
 			{
-				for(j=0;j<ords1.size();j++)
-				if(ords1.get(j).equals(chefords1.get(i)))
+				if(ords1.get(j).getId()==id)
 				{
-					waiterords1.add(ords1.get(j));
-					ords1.remove(j);
-					
-					
+					ords1.get(j).setOrder_status(status);
 				}
-				System.out.println("waiterrr"+waiterords1);
-				System.out.println(ords1);
-				System.out.println("cheff"+chefords1);
-						
 			}
 			
 			
@@ -134,7 +159,7 @@ public class OrderController1 {
 			System.out.println("insideorderstatus2");
 			
 			mv.setViewName("orderstatus2");
-			mv.addObject("orderstatuswaiter2",waiterords1);
+			mv.addObject("orderstatuswaiter2",ords1);
 
 			return mv;
 		}

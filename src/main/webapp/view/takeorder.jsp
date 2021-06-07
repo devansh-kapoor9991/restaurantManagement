@@ -80,7 +80,7 @@
         .expense {
       
             background: linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4));
-            height: 220px;
+            height: 260px;
             width: 400px;
             font-size: calc(10px + 2vmin);
             color: black;
@@ -109,6 +109,15 @@
             font-size: 25px;
 
         }
+        #alert
+	{
+		padding:10px;
+		background-color:"blue";
+		font-size:25px;
+		font-weight:bold;
+		margin-left:25px;
+		
+	}
     </style>
 </head>
 
@@ -129,6 +138,7 @@
 
 
         <div class="expense">
+        <font color="red" id="alert">${error}</font>
             <form:form action="takeorder" modelAttribute="custorder" method="POST">
                 <center>
                     <table>
