@@ -56,7 +56,7 @@ public class Jdbcimpl {
 	@SuppressWarnings("deprecation")
 	public String findBill(int tableno) {
 
-        String sql = "SELECT bill FROM orderdetails WHERE table_no = ?";
+        String sql = "SELECT SUM(bill) FROM orderdetails WHERE table_no = ?";
 
         return jdbcTemplate.queryForObject(sql, new Object[]{tableno}, String.class);
     }

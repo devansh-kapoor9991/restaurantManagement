@@ -22,6 +22,7 @@ import com.restaurant.model.Orders;
 
 @Controller
 public class OrderController1 {
+	int y=1;
 	int dc[]=new int[26];
 	int q[]=new int[26];
 	int i=0,j=0;
@@ -52,6 +53,7 @@ public class OrderController1 {
 	@RequestMapping(value="/takeorder1", method = RequestMethod.POST)
 	public String showHome(ModelMap model, @ModelAttribute("custorder1") Orders O)
 	{	
+		y=1;
 		tableno=O.getTableno();
 	System.out.println(tableno);
 	String a=jdbc.checkStatus1(Integer.parseInt(tableno));
@@ -72,15 +74,17 @@ public class OrderController1 {
 		tableno=O.getTableno();
 		for(int k=0;k<ords1.size();k++)
 		{
-			if(ords1.get(k).getDishname().equals(O.getDishname())&&ords1.get(k).getTableno().equals(O.getTableno()))
+			if(ords1.get(k).getDishname().equals(O.getDishname())&&ords1.get(k).getTableno().equals(O.getTableno())&&ords1.get(k).getOrder_status().equals("Order-Received"))
 			{
 				int z=O.getQuantity();
 				ords1.get(k).setQuantity(ords1.get(k).getQuantity()+z);
-				O=null;
+				bill+=menu.getPrice()*z;
+			
+				y=0;
 			}
 			
 		}
-		if(O!=null)
+		if(y!=0)
 		{
 				ords1.add(O);
 				k++;

@@ -15,16 +15,13 @@ import com.restaurant.model.Menu;
 	
 	@Controller
 	
-	public class LoginController {
-	
-		
-		
+	public class LoginController 
+	{	
 		@RequestMapping(value="/waiter1", method = RequestMethod.GET)
 		public String showWaiter1(ModelMap model)
 		{
 			return "waiter1";
-		}
-		
+		}	
 		@RequestMapping(value="/orderstatus2", method = RequestMethod.GET)
 		public String showStatus2(ModelMap model)
 		{
