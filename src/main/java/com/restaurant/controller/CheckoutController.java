@@ -17,6 +17,14 @@ public class CheckoutController {
 	@Autowired
 	SendEmail sendemail;
 	
+	public void jdbcsetter(Jdbcimpl jdbc) {
+		this.jdbc = jdbc;
+	}
+	public void emailSetter(SendEmail sendemail) {
+		this.sendemail = sendemail;
+	}
+
+	
 	@RequestMapping(value="/checkout", method = RequestMethod.GET)
 	public String showCheckout(ModelMap model)
 	{

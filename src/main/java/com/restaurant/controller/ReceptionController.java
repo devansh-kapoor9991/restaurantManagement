@@ -25,7 +25,15 @@ public class ReceptionController {
 	@Autowired
 	Jdbcimpl jdbc;
 	
+	public void jdbcsetter(Jdbcimpl jdbc) {
+		this.jdbc = jdbc;
+	}
 	
+	public ReceptionController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	
 	@RequestMapping(value="/recep", method = RequestMethod.GET)
 	public ModelAndView showreceptionpage(ModelAndView mv){
