@@ -80,7 +80,7 @@
 <body>
 	<div class = "nav-bar" >
 		<div class = "log-out">
-     		<a href = "login">Log Out</a>
+     		<a href = "http://localhost:3000">Log Out</a>
     	</div>
 	</div>
      <div class="status">

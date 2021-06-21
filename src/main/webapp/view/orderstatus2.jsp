@@ -106,10 +106,10 @@
 <body>
     <div class = "side-bar">
         <div id = "side-bar_text">
-            <a href = "waiter1"><p id = "order-status">Order Status</p></a>
+            <a href = "waiter2"><p id = "order-status">Order Status</p></a>
         </div>
         <div id = "side-bar_text">
-            <a href = "waiter1"><p id = "home">Home</p></a>
+            <a href = "waiter2"><p id = "home">Home</p></a>
         </div>
     </div>
     <div class = "main">

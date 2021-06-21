@@ -103,7 +103,7 @@
 <body>
     <div class = "header">
         <div id = "log-out">
-            <a href = "login"><p id = "logOut_text">Log Out</p></a>
+            <a href = "http://localhost:3000"><p id = "logOut_text">Log Out</p></a>
         </div>
     </div>
     <div class = "main">

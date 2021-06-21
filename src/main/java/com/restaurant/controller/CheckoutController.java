@@ -17,8 +17,9 @@ public class CheckoutController {
 	@Autowired
 	SendEmail sendemail;
 	
-	@RequestMapping(value="/checkout1", method = RequestMethod.GET)
-	public String showCheckoutPage(ModelMap model){
+	@RequestMapping(value="/checkout", method = RequestMethod.GET)
+	public String showCheckout(ModelMap model)
+	{
 		return "checkout";
 	}
 	
