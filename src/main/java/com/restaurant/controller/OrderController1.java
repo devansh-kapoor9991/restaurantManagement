@@ -90,7 +90,7 @@ public class OrderController1 {
 				k++;
 				i++;
 				System.out.println(tableno);
-				bill+=menu.getPrice()*O.getQuantity();
+				
 				
 				System.out.println(bill);
 				System.out.println(i);
